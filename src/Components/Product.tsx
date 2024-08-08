@@ -1,6 +1,7 @@
 import React from 'react'
 import { product } from '../types/types'
 import { Link } from 'react-router-dom'
+import './Product.scss'
 
 type Props = {
     id?: number,
@@ -13,13 +14,13 @@ type Props = {
 
 const Product = (props: Props) => {
   return (
-    <div>
+    <div className='product'>
         <span>{props.name}</span>
         <span>{props.description}</span>
-        <span>{props.price}</span>
-        <span>{props.stock}</span>
-        <Link to={`/product/${props.id}`}>Ver</Link>
-        <span onClick={() => props.handleDelete(props.id)}>Apagar</span>
+        <span>{props.price} R$</span>
+        <span>{props.stock} items</span>
+        <Link to={`/product/${props.id}`}><button>Ver/editar</button></Link>
+        <button onClick={() => props.handleDelete(props.id)}>Apagar</button>
     </div>
   )
 }

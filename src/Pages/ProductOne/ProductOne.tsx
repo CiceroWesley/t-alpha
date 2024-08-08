@@ -11,14 +11,6 @@ const ProductOne = (props: Props) => {
     const {id} = useParams();
     const navigate = useNavigate();
 
-
-    // const [productData, setProductData] = useState<product>({
-    //     name: '',
-    //     description: '',
-    //     price: 0,
-    //     stock: 0,
-    // })
-
     const {setProduct: setProductData , product : productData, error, loading} = useFetchProduct(Number(id));
 
     const [editProduct, setEditProduct] = useState<boolean>(true);

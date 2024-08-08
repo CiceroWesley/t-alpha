@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { AxiosInstance } from '../../utils/Axios'
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './Login.scss'
 
 type Props = {}
@@ -47,6 +47,7 @@ useEffect(() => {
 return (
 <div>
     <h3>Login</h3>
+    <Link to='/'>Voltar</Link>
     <form onSubmit={handleSubmit} className='login'>
         <label>
             <span>CPF ou CNPJ:</span>

@@ -4,6 +4,7 @@ import { AxiosInstance } from '../../utils/Axios';
 import { Link, useNavigate } from 'react-router-dom';
 import Product from '../../Components/Product';
 import useFetchProducts from '../../hooks/useFetchProducts';
+import './Products.scss'
 
 type Props = {}
 
@@ -37,17 +38,26 @@ const Products = (props: Props) => {
         }
     }
 
+    const handleLogout = () => {
+        localStorage.clear();
+        navigate('/')
+    }
+
   return (
     <div>
         <h3>Produtos</h3>
         <Link to="/createproduct">Cadastrar produto</Link>
+        <button onClick={handleLogout}>Sair</button>
 
         {loading && <span>Carregando</span>}
         {error && <span>{error}</span>}
-        {products && products.map((product) => (
-            <Product key={product.id} id={product.id} name={product.name} description={product.description} price={product.price} stock={product.stock} handleDelete={handleDelete}/>
-            ))
-        }
+        <div className='products'>
+            {products && products.map((product) => (
+                <Product key={product.id} id={product.id} name={product.name} description={product.description} price={product.price} stock={product.stock} handleDelete={handleDelete}/>
+                ))
+            }
+        </div>
+        
     </div>
   )
 }

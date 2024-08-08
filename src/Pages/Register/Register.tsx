@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { user } from '../../types/types'
 import { AxiosInstance } from '../../utils/Axios'
 import './Register.scss'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 type Props = {}
 
@@ -58,6 +58,7 @@ const Register = (props: Props) => {
   return (
     <div>
         <h3>Criar conta</h3>
+        <Link to='/'>Voltar</Link>
         <form onSubmit={handleSubmit} className='createAccount'>
             <label>
                 <span>Nome de usuário:</span>
