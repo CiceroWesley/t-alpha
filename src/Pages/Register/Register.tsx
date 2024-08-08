@@ -1,10 +1,13 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { user } from '../../types/types'
 import { AxiosInstance } from '../../utils/Axios'
+import './Register.scss'
+import { useNavigate } from 'react-router-dom'
 
 type Props = {}
 
 const Register = (props: Props) => {
+    const navigate = useNavigate();
     const [userData, setUserData] = useState<user>({
         name: '',
         taxNumber: '',
@@ -35,6 +38,7 @@ const Register = (props: Props) => {
                     password: ''
                 })
                 alert('Cadastro realizado com sucesso.');
+                navigate('/login')
             } else{
                 throw('Erro no cadastro.');
             }
@@ -44,10 +48,17 @@ const Register = (props: Props) => {
         }
     }
 
+    useEffect(() => {
+        const token = localStorage.getItem('token');
+        if(token){
+            navigate('/products')
+        }
+    },[])
+
   return (
     <div>
-        <h3>Register User</h3>
-        <form onSubmit={handleSubmit}>
+        <h3>Criar conta</h3>
+        <form onSubmit={handleSubmit} className='createAccount'>
             <label>
                 <span>Nome de usuário:</span>
                 <input type="text" placeholder='Wesley' value={userData.name} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setUserData({...userData, name: e.target.value})}/>

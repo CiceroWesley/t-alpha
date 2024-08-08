@@ -1,10 +1,13 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { product } from '../../types/types'
 import { AxiosInstance } from '../../utils/Axios'
+import { Link, useNavigate } from 'react-router-dom'
 
 type Props = {}
 
 const CreateProduct = (props: Props) => {
+    const navigate = useNavigate();
+
     const [productData, setProductData] = useState<product>({
         name: '',
         description: '',
@@ -24,7 +27,9 @@ const CreateProduct = (props: Props) => {
         try {
             const token = localStorage.getItem('token');
             if(!token){
+                navigate('/login')
                 throw new Error("Erro na autenticação");
+                
             }
             const response = await AxiosInstance.post('/api/products/create-product', product, {
                 headers: {
@@ -48,9 +53,18 @@ const CreateProduct = (props: Props) => {
         }
     }
 
+    useEffect(() => {
+        
+        const token = localStorage.getItem('token');
+        if(!token){
+            navigate('/login')
+        }
+    },[])
+
   return (
     <div>
         <h3>Criar produto</h3>
+        <Link to="/products">Voltar para produtos</Link>
         <form onSubmit={handleSubmit}>
             <label>
                 <span>Nome do produto:</span>

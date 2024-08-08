@@ -1,9 +1,14 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { AxiosInstance } from '../../utils/Axios'
+import { useNavigate } from 'react-router-dom';
+import './Login.scss'
 
 type Props = {}
 
 const Login = (props: Props) => {
+  const navigate = useNavigate();
+
+
   const [userData, setUserData] = useState({
     taxNumber: '',
     password: ''
@@ -21,6 +26,7 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 
         if(response.data){
           localStorage.setItem('token', response.data.data.token);
+          navigate('/products')
 
         } else{
             throw('Erro no cadastro.');
@@ -31,10 +37,17 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     }
 }
 
+useEffect(() => {
+  const token = localStorage.getItem('token');
+  if(token){
+      navigate('/products')
+  }
+},[])
+
 return (
 <div>
     <h3>Login</h3>
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className='login'>
         <label>
             <span>CPF ou CNPJ:</span>
             <input type="text" placeholder='12345678900' value={userData.taxNumber} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setUserData({...userData, taxNumber: e.target.value})}/>
