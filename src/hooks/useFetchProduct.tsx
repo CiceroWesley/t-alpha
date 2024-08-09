@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { product } from '../types/types'
 import { AxiosInstance } from '../utils/Axios'
 import { useNavigate } from 'react-router-dom'

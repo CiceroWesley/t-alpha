@@ -3,9 +3,8 @@ import { AxiosInstance } from '../../utils/Axios'
 import { Link, useNavigate } from 'react-router-dom';
 import './Login.scss'
 
-type Props = {}
 
-const Login = (props: Props) => {
+const Login = () => {
   const navigate = useNavigate();
 
 

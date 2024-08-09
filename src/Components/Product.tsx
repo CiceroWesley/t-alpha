@@ -1,5 +1,3 @@
-import React from 'react'
-import { product } from '../types/types'
 import { Link } from 'react-router-dom'
 import './Product.scss'
 

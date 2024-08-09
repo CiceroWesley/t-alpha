@@ -1,19 +1,16 @@
-import React, { useEffect, useState } from 'react'
-import { product } from '../../types/types'
 import { AxiosInstance } from '../../utils/Axios';
 import { Link, useNavigate } from 'react-router-dom';
 import Product from '../../Components/Product';
 import useFetchProducts from '../../hooks/useFetchProducts';
 import './Products.scss'
 
-type Props = {}
 
-const Products = (props: Props) => {
+const Products = () => {
     const navigate = useNavigate();
 
     // const [products, setProducts] = useState<product[]>([]);
 
-    const {setProducts ,products, error, loading} = useFetchProducts();
+    const { products, error, loading} = useFetchProducts();
 
 
     const handleDelete = async (id: number | undefined) => {

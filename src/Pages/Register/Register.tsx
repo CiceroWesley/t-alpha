@@ -4,9 +4,7 @@ import { AxiosInstance } from '../../utils/Axios'
 import './Register.scss'
 import { Link, useNavigate } from 'react-router-dom'
 
-type Props = {}
-
-const Register = (props: Props) => {
+const Register = () => {
     const navigate = useNavigate();
     const [userData, setUserData] = useState<user>({
         name: '',

@@ -1,15 +1,13 @@
-import React, { useEffect, useState } from 'react'
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import React, { useState } from 'react'
+import { Link, useParams } from 'react-router-dom';
 import { AxiosInstance } from '../../utils/Axios';
 import './ProductOne.scss'
 import useFetchProduct from '../../hooks/useFetchProduct';
 import './ProductOne.scss'
 
-type Props = {}
 
-const ProductOne = (props: Props) => {
+const ProductOne = () => {
     const {id} = useParams();
-    const navigate = useNavigate();
 
     const {setProduct: setProductData , product : productData, error, loading} = useFetchProduct(Number(id));
 

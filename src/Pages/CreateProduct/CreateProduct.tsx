@@ -4,9 +4,8 @@ import { AxiosInstance } from '../../utils/Axios'
 import { Link, useNavigate } from 'react-router-dom'
 import './CreateProduct.scss'
 
-type Props = {}
 
-const CreateProduct = (props: Props) => {
+const CreateProduct = () => {
     const navigate = useNavigate();
 
     const [productData, setProductData] = useState<product>({
