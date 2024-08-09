@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { product } from '../../types/types'
 import { AxiosInstance } from '../../utils/Axios'
 import { Link, useNavigate } from 'react-router-dom'
+import './CreateProduct.scss'
 
 type Props = {}
 
@@ -14,6 +15,8 @@ const CreateProduct = (props: Props) => {
         price: 0,
         stock: 0,
     })
+
+    const [error, setError] = useState<string | null>();
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -48,8 +51,8 @@ const CreateProduct = (props: Props) => {
                 throw('Erro no cadastro.');
             }
 
-        } catch (error) {
-            console.log(error);
+        } catch (error: any) {
+            setError(String(error.response.data.message))
         }
     }
 
@@ -65,7 +68,7 @@ const CreateProduct = (props: Props) => {
     <div>
         <h3>Criar produto</h3>
         <Link to="/products">Voltar para produtos</Link>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className='createProduct'>
             <label>
                 <span>Nome do produto:</span>
                 <input type="text" placeholder='Wesley' value={productData.name} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setProductData({...productData, name: e.target.value})}/>
@@ -88,6 +91,7 @@ const CreateProduct = (props: Props) => {
 
             <input type="submit" value='Cadastrar'/>
         </form>
+        {error && <span>{error}</span>}
     </div>
   )
 }

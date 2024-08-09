@@ -15,6 +15,7 @@ const Register = (props: Props) => {
         phone: '',
         password: ''
     })
+    const [error, setError] = useState<string | null>();
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -43,8 +44,8 @@ const Register = (props: Props) => {
                 throw('Erro no cadastro.');
             }
 
-        } catch (error) {
-            console.log(error);
+        } catch (error: any) {
+            setError(String(error.response.data.message))
         }
     }
 
@@ -87,6 +88,7 @@ const Register = (props: Props) => {
 
             <input type="submit" value='Cadastrar'/>
         </form>
+        {error && <span style={{textAlign:'center'}}>{error}</span>}
     </div>
   )
 }

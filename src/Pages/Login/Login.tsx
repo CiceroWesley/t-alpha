@@ -14,6 +14,8 @@ const Login = (props: Props) => {
     password: ''
 })
 
+const [error, setError] = useState<string | null>('')
+
 const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const user = {
@@ -32,8 +34,8 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
             throw('Erro no cadastro.');
         }
 
-    } catch (error) {
-        console.log(error);
+    } catch (error: any) {
+        setError(String(error.response.data.message))
     }
 }
 
@@ -61,6 +63,7 @@ return (
 
         <input type="submit" value='Fazer login'/>
     </form>
+    {error && <span style={{textAlign:'center'}}>{error}</span>}
 </div>
 )
 }

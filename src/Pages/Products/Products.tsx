@@ -34,7 +34,7 @@ const Products = (props: Props) => {
                 throw 'Erro ao excluir produto';
             }
         } catch (error) {
-            console.log(error)
+            alert('Erro ao excluir produto')
         }
     }
 
@@ -49,7 +49,7 @@ const Products = (props: Props) => {
         <Link to="/createproduct">Cadastrar produto</Link>
         <button onClick={handleLogout}>Sair</button>
 
-        {loading && <span>Carregando</span>}
+        {loading && <img src='loading.gif' height='40px'/>}
         {error && <span>{error}</span>}
         <div className='products'>
             {products && products.map((product) => (

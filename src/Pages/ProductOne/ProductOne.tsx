@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom';
-import { product } from '../../types/types';
 import { AxiosInstance } from '../../utils/Axios';
 import './ProductOne.scss'
 import useFetchProduct from '../../hooks/useFetchProduct';
+import './ProductOne.scss'
 
 type Props = {}
 
@@ -40,7 +40,7 @@ const ProductOne = (props: Props) => {
                 throw('Erro na edição.');
             }
         } catch (error) {
-            console.log(error)
+            alert('Erro ao editar')
         }
     }
 
@@ -49,9 +49,9 @@ const ProductOne = (props: Props) => {
         <h3>Editar produto</h3>
         <Link to="/products">Voltar para produtos</Link>
         {error && <span>{error}</span>}
-        {!loading? <div>
+        {!loading? <div className='productOne'>
         
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} >
             <label>
                 <span>Nome do produto:</span>
                 <input disabled={editProduct} type="text" placeholder='Wesley' value={productData.name} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setProductData({...productData, name: e.target.value})}/>
@@ -72,7 +72,7 @@ const ProductOne = (props: Props) => {
             </form>
             <button onClick={() => {setEditProduct(!editProduct)}}>{editProduct? 'Liberar para editar' : 'Cancelar'}</button>    
         </div>
-        : <span>Carregando</span>}
+        : <div>carregando</div>}
 
 
     </div>

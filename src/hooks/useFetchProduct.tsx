@@ -36,8 +36,8 @@ const useFetchProduct = (id: number) => {
                     setLoading(false);
                 }
                 
-            } catch (error) {
-                setError(String(error))
+            } catch (error: any) {
+                setError(String(error.response.data.message))
                 setLoading(false);
             }
         }

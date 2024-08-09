@@ -1,14 +1,17 @@
-import React from 'react'
 import { Link } from 'react-router-dom'
+import './Home.scss'
 
-type Props = {}
 
-const Home = (props: Props) => {
+const Home = () => {
   return (
     <div>
       <h3>Bem-vindo</h3>
-      <Link to="/register">Registrar</Link>
-      <Link to="/login">Login</Link>
+
+      <div>
+        <Link className='linkButton' to="/register">Registrar</Link>
+        <Link className='linkButton' to="/login">Login</Link>
+      </div>
+      
     </div>
   )
 }
